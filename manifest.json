@@ -19,7 +19,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://iplan.byui.edu/grad_planner/#/*"],
+      "matches": ["*://iplan.byui.edu/*", "<all_urls>"],
       "js": ["scripts/test.js"]
     }
   ]

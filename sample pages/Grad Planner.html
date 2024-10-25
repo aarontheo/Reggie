@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">  
+  <title>Grad Planner</title>
+  <base href="./">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    window.indexHtmlVersion = "4.3.0.50";
+	var currentDateTime = (new Date()).getTime().toString();
+	var script   = document.createElement("script");
+	script.type  = "text/javascript";
+	script.src   = "/Enterprise/ClientApp/app/js/AngularIndexPageBootstrap.js?v="+currentDateTime;
+	script.defer = true;
+	script.onload = function() {  
+		InitApp("grad_planner");
+	};
+	document.head.appendChild(script);
+ </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=block" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="assets/img/favico.ico">
+  <style>
+    #isGpSplashLoader {
+      background-color: rgba(0, 0, 0, 0.4);
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+    }
+
+    #isGpSplashLoader h2 {
+      font-size: 20px !important;
+      font-family: Arial, Helvetica, sans-serif !important;
+      font-weight: normal !important;
+    }
+
+ 
+    #isGpSplashLoader .lcontainer {
+      border-radius: 6px;
+      max-width: 400px;
+      width: 100%;
+      margin: 0 auto;
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #FFF;
+      box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.25);
+      left: 0;
+      right: 0;
+      text-align: center;
+      padding: 20px;
+      font-family: Arial, Helvetica, sans-serif !important;
+      font-weight: normal !important;
+
+    }
+ 
+    /* #isSplashLoader .lcontainer p {
+      margin: 15px 0 20px 0;
+    } */
+    #isGpSplashLoader.lcontainer p {
+      margin: 15px 0 20px 0;
+      font-family: Arial, Helvetica, sans-serif !important;
+      font-weight: normal !important;
+    }
+
+    .loader {
+  width: 120px;
+  height: 20px;
+  margin:0 auto;
+  -webkit-mask: radial-gradient(circle closest-side,#00000026 94%,#0000) left/20% 100%;
+  background: linear-gradient(#000 0 0) left/0% 100% no-repeat #ddd;
+  animation: l17 2s infinite steps(6);
+}
+@keyframes l17 {
+    100% {background-size:120% 100%}
+}
+
+</style>
+</head>
+<body class="mat-typography newDesign">
+  <div id="isGpSplashLoader">
+    <div class="lcontainer">
+      <h2 style="font-size: 20px !important; font-family: Arial, Helvetica, sans-serif !important; font-weight: normal !important; margin: 15px 0 !important; line-height: 1 !important;">Getting things ready for you.</h2>
+      <p style="font-size: 14px !important; font-family: Arial, Helvetica, sans-serif !important; font-weight: normal !important; margin: 5px 0 15px 0 !important; line-height: 1 !important;">Almost there!!</p>
+      <div class="loader"></div>
+    </div>
+  </div>
+  <app-root></app-root>
+</body>
+</html>
