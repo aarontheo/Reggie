@@ -4,6 +4,9 @@ class Time:
 		self.hours = hours
 		self.minutes = minutes
 
+	def __str__(self) -> str:
+		return f'{self.hours}:{self.minutes:02}'
+
 	def __eq__(self, t2) -> bool:
 		if not isinstance(t2, Time):
 			return NotImplemented
@@ -36,6 +39,9 @@ class Interval:
 	def __init__(self, start:Time, end:Time) -> None:
 		self.start = start
 		self.end = end
+
+	def __str__(self) -> str:
+		return f'{self.start} - {self.end}'
 
 	def __contains__(self, time:Time):
 		return self.start < time < self.end

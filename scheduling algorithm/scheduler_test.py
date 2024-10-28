@@ -45,8 +45,8 @@ def test_time_overlap():
 
 	a = Interval(Time(8, 0), Time(9, 0))
 	b = Interval(Time(9, 0), Time(10, 0))
-	assert is_interval_overlap(a, b) == False
+	assert a.has_overlap(b) == False
 
 	a = Interval(Time(8, 0), Time(9, 0))
 	b = Interval(Time(7, 0), Time(8, 0))
-	assert is_interval_overlap(a, b) == False
+	assert a.has_overlap(b) == False

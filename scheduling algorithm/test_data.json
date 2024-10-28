@@ -10,11 +10,9 @@
 				"room": "221",
 				"method": "In-Person",
 				"type": "DAY",
-				"schedule": {
-					"days": ["M", "W"],
-					"start_time": [11, 30],
-					"end_time": [13, 0]
-				}
+				"days": ["M", "W"],
+				"start_time": [11, 30],
+				"end_time": [13, 0]
 			},
 			{
 				"course_section": "CSE 121E-02",
@@ -23,11 +21,9 @@
 				"room": "222",
 				"method": "In-Person",
 				"type": "DAY",
-				"schedule": {
-					"days": ["T", "Th"],
-					"start_time": [14, 0],
-					"end_time": [15, 30]
-				}
+				"days": ["T", "Th"],
+				"start_time": [14, 0],
+				"end_time": [15, 30]
 			},
 			{
 				"course_section": "CSE 121E-03",
@@ -36,11 +32,9 @@
 				"room": "220",
 				"method": "Online",
 				"type": "EVENING",
-				"schedule": {
-					"days": ["M", "W"],
-					"start_time": [18, 0],
-					"end_time": [19, 30]
-				}
+				"days": ["M", "W"],
+				"start_time": [18, 0],
+				"end_time": [19, 30]
 			}
 		]
 	},
@@ -55,11 +49,9 @@
 				"room": "130",
 				"method": "In-Person",
 				"type": "DAY",
-				"schedule": {
-					"days": ["T", "Th"],
-					"start_time": [9, 0],
-					"end_time": [10, 30]
-				}
+				"days": ["T", "Th"],
+				"start_time": [9, 0],
+				"end_time": [10, 30]
 			},
 			{
 				"course_section": "CSE 220-02",
@@ -68,11 +60,9 @@
 				"room": "135",
 				"method": "In-Person",
 				"type": "DAY",
-				"schedule": {
-					"days": ["M", "W"],
-					"start_time": [11, 0],
-					"end_time": [12, 30]
-				}
+				"days": ["M", "W"],
+				"start_time": [11, 0],
+				"end_time": [12, 30]
 			},
 			{
 				"course_section": "CSE 220-03",
@@ -81,11 +71,9 @@
 				"room": "221",
 				"method": "Online",
 				"type": "EVENING",
-				"schedule": {
-					"days": ["T", "Th"],
-					"start_time": [17, 0],
-					"end_time": [18, 30]
-				}
+				"days": ["T", "Th"],
+				"start_time": [17, 0],
+				"end_time": [18, 30]
 			}
 		]
 	},
@@ -100,11 +88,9 @@
 				"room": "150",
 				"method": "In-Person",
 				"type": "DAY",
-				"schedule": {
-					"days": ["M", "W", "F"],
-					"start_time": [10, 0],
-					"end_time": [11, 0]
-				}
+				"days": ["M", "W", "F"],
+				"start_time": [10, 0],
+				"end_time": [11, 0]
 			},
 			{
 				"course_section": "CSE 340-02",
@@ -113,11 +99,9 @@
 				"room": "152",
 				"method": "In-Person",
 				"type": "DAY",
-				"schedule": {
-					"days": ["T", "Th"],
-					"start_time": [13, 30],
-					"end_time": [15, 0]
-				}
+				"days": ["T", "Th"],
+				"start_time": [13, 30],
+				"end_time": [15, 0]
 			},
 			{
 				"course_section": "CSE 340-03",
@@ -126,11 +110,9 @@
 				"room": "153",
 				"method": "Online",
 				"type": "EVENING",
-				"schedule": {
-					"days": ["W"],
-					"start_time": [19, 0],
-					"end_time": [20, 30]
-				}
+				"days": ["W"],
+				"start_time": [19, 0],
+				"end_time": [20, 30]
 			}
 		]
 	},
@@ -145,11 +127,9 @@
 				"room": "201",
 				"method": "In-Person",
 				"type": "DAY",
-				"schedule": {
-					"days": ["M", "W"],
-					"start_time": [14, 0],
-					"end_time": [15, 30]
-				}
+				"days": ["M", "W"],
+				"start_time": [14, 0],
+				"end_time": [15, 30]
 			},
 			{
 				"course_section": "CSE 350-02",
@@ -158,11 +138,9 @@
 				"room": "202",
 				"method": "In-Person",
 				"type": "DAY",
-				"schedule": {
-					"days": ["T", "Th"],
-					"start_time": [10, 30],
-					"end_time": [12, 0]
-				}
+				"days": ["T", "Th"],
+				"start_time": [10, 30],
+				"end_time": [12, 0]
 			},
 			{
 				"course_section": "CSE 350-03",
@@ -171,11 +149,9 @@
 				"room": "203",
 				"method": "Online",
 				"type": "EVENING",
-				"schedule": {
-					"days": ["T"],
-					"start_time": [18, 30],
-					"end_time": [20, 0]
-				}
+				"days": ["T"],
+				"start_time": [18, 30],
+				"end_time": [20, 0]
 			}
 		]
 	},
@@ -190,11 +166,9 @@
 				"room": "300",
 				"method": "In-Person",
 				"type": "DAY",
-				"schedule": {
-					"days": ["M", "W"],
-					"start_time": [9, 30],
-					"end_time": [11, 0]
-				}
+				"days": ["M", "W"],
+				"start_time": [9, 30],
+				"end_time": [11, 0]
 			},
 			{
 				"course_section": "CSE 460-02",
@@ -203,11 +177,43 @@
 				"room": "301",
 				"method": "Online",
 				"type": "EVENING",
-				"schedule": {
-					"days": ["T", "Th"],
-					"start_time": [17, 30],
-					"end_time": [19, 0]
-				}
+				"days": ["T", "Th"],
+				"start_time": [17, 30],
+				"end_time": [19, 0]
+			}
+		]
+	},
+	{
+		"title": "Software Engineering",
+		"course_code": "CSE 480",
+		"sections": [
+			{
+				"course_section": "CSE 480-01",
+				"instructor": "Morris, Sarah G.",
+				"building": "ENG",
+				"room": "130",
+				"method": "In-Person",
+				"type": "DAY",
+				"days": ["M", "W", "F"],
+				"start_time": [13, 30],
+				"end_time": [16, 0]
+			}
+		]
+	},
+	{
+		"title": "Senior Design",
+		"course_code": "CSE 498",
+		"sections": [
+			{
+				"course_section": "CSE 498-01",
+				"instructor": "Barney, Lee S.",
+				"building": "ENG",
+				"room": "135",
+				"method": "In-Person",
+				"type": "DAY",
+				"days": ["M", "W", "F"],
+				"start_time": [13, 30],
+				"end_time": [15, 0]
 			}
 		]
 	}

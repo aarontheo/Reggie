@@ -4,9 +4,16 @@
 
   "version": "1.0",
   "description": "A registration helper for students of BYU-I.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "reggie@aarontheo.github.io",
+      "strict_min_version": "131.0"
+    }
+  },
   "permissions": [
     "storage",
-    "activeTab"
+    "activeTab",
+    "https://student.byui.edu/ICS/Class_Schedule/Public_Course_Search.jnz"
   ],
   "action": {
     "default_popup": "pages/popup.html",
@@ -22,5 +29,15 @@
       "matches": ["*://iplan.byui.edu/*", "<all_urls>"],
       "js": ["scripts/test.js"]
     }
-  ]
+  ],
+  "background": {
+    "scripts": ["scripts/background.js"],
+    "type": "module"
+  },
+  "sidebar_action": {
+    "default_panel": "pages/sidebar.html",
+    "default_icon": {
+      "16": "images/icon-16.png"
+    }
+  }
 }
