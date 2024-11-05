@@ -1,10 +1,19 @@
 <!doctype html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+    <script src="popup.js"></script>
+    <link rel="stylesheet" href="popup.css"/>
   </head>
   <body>
-    <!-- Have a menu here that lets students input their course codes -->
-
+    <div>Hello there, welcome to Reggie!</div>
+    <button id="get-course-info">Get course info</button>
+    <button id="course-lookup">Look up my courses</button>
+    <div>Reggie Status:</div>
+    <div id="reggie-status">Currently idle.</div>
+    <div id="test-search">
+      <input type="text" id="search-input" placeholder="Search for a course"/>
+      <button id="search-button">Search</button>
+    </div>
   </body>
 </html>

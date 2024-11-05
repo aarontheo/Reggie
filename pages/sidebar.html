@@ -1,11 +1,27 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-	hello there
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="sidebar.js"></script>
+  </head>
+  <body>
+    <a
+      href="https://student.byui.edu/ICS/Class_Schedule/Public_Course_Search.jnz"
+      target="_blank"
+      >Course Search</a
+    >
+    <div id="course-input">
+      <input
+        type="text"
+        id="course-code"
+        placeholder="Enter Course Code (e.g., CS101)"
+      />
+      <button id="add-course">Add Course</button>
+      <div id="error-message"></div>
+    </div>
+    <ul id="course-list"></ul>
+    <button id="search-courses">I'm ready to search my courses!</button>
+    <button id="test-button">Send a test message</button>
+  </body>
 </html>

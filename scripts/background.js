@@ -1,9 +1,11 @@
-// Automatically open the sidebar when the extension is installed or reloaded
-browser.runtime.onInstalled.addListener(() => {
-    browser.sidebarAction.open();
+// Handle messages, get them where they need to go
+browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
+	console.log(message);
+	console.log(sender);
+	sendResponse("Message received by background.js");
+	browser.runtime.sendMessage({ target: "test", data: "Hello, world!" }, (response) => {
+		console.log(response);
+ });
 });
 
-// Optionally, you can also open it when the browser starts up
-browser.runtime.onStartup.addListener(() => {
-    browser.sidebarAction.open();
-});
+console.log("Testing!!");
