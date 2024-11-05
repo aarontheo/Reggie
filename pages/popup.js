@@ -14,6 +14,7 @@ function searchCourse(course_code) {
 	browser.runtime.sendMessage({ target: "course-search", course: course_code });
 }
 
+/*
 function testMessage() {
 	// Send a message to the background script
 	// window.alert("Sending a test message");
@@ -25,13 +26,23 @@ function testMessage() {
 
 function handleMessage(message, sender, sendResponse) {
 	if (message.target == "popup") {
-		console.log("Message recieved by popup.js");
+		console.log("Message received by popup.js");
 	}
+}
+*/
+
+async function requestSearch() {
+	browser.runtime.sendMessage()
 }
 
 function main() {
-	document.getElementById("search-button").addEventListener("click", testMessage);
-	browser.runtime.onMessage.addListener(handleMessage);
+	document.getElementById("search-button").addEventListener("click", () => {
+		var sending = browser.runtime.sendMessage({ target: "search-courses" });
+		sending.then(response => {
+			console.log(response);
+		});
+	});
+	// browser.runtime.onMessage.addListener(handleMessage);
 }
 
 document.addEventListener("DOMContentLoaded", main);
