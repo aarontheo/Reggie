@@ -1,0 +1,49 @@
+/* #2C6EB1
+#FAFAFA */
+
+
+body {
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+#error-message {
+  display: none;
+}
+
+/* div {
+  background-color: #2C6EB1;
+  width: 90%;
+  min-height: 80px;
+} */
+
+#course-list {
+  min-height: 80px; /* Adjust the height as needed */
+  width: 90%; /* Adjust the width as needed */
+  border: 5px solid #2C6EB1; /* Border color */
+  background-color: grey; /* Lighter inside box color */
+  padding: 10px; /* Optional: Add some padding inside the box */
+  box-sizing: border-box; /* Ensure padding is included in the element's total width and height */
+}
+
+
+button {
+  background-color: #2c6eb1;
+  border: none;
+  border-radius: 0;
+  text-align: center;
+  display: block;
+  padding: 10px 20px;
+  width: 90%;
+}
+
+button:hover {
+  background-color: #265a8e;
+}
+
+button:active {
+  background-color: #204a73;
+}

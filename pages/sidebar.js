@@ -1,12 +1,8 @@
 // sidebar.js
 // This script is used to interact with the sidebar of the extension.
 // It allows the user to add courses to a list and submit them to be searched on the course search page.
-function searchCourse(course_code) {
-	console.log("Sending a course");
-	browser.runtime.sendMessage({ target: "course-search", data: course_code }, (response) => {
-		console.log(response);
-	});
-}
+
+import * as course from "./script/courses.js";
 
 function validateCourseCode(courseCode) {
 	const regex = /^[A-z]{2,7} *[0-9]{3}[A-z]*$/;
@@ -60,11 +56,8 @@ function getCourses() {
 }
 
 function searchCourses() {
-	const courses = getCourses();
-	// Search the courses, one at a time
-	courses.forEach((course) => {
-		searchCourse(course);
-	});
+	// Sends a message to Background.js telling it to search all stored course codes.
+	browser.runtime.sendMessage({ operation: "search-courses" });
 }
 
 function addCourse() {
@@ -74,7 +67,8 @@ function addCourse() {
 	if (isValid) {
 		addCourseToList(courseCodeInput);
 		document.getElementById("course-code").value = ""; // Clear input field
-		document.getElementById("error-message").textContent = "";
+		// document.getElementById("error-message").textContent = "";
+		document.getElementById("error-message").style.display = "none";
 	} else {
 		document.getElementById("error-message").textContent =
 			"Invalid course code. Please enter a valid code (e.g., CS101).";
@@ -90,7 +84,7 @@ function main() {
 
 	// Get the input field and button
 	var input = document.getElementById("course-code");
-	var add_course_button = document.getElementById("add-course")
+	var add_course_button = document.getElementById("add-course");
 
 	// Let the user enter the course code by pressing "Enter" on the keyboard
 	input.addEventListener("keypress", function (event) {
@@ -100,8 +94,9 @@ function main() {
 			add_course_button.click();
 		}
 	});
+}
 
-
+/*
 	// TESTING STUFF
 	const target = "popup"
 	function testMessage() {
@@ -112,5 +107,6 @@ function main() {
 	}
 	document.getElementById("test-button").addEventListener("click", testMessage);
 }
+*/
 
 document.addEventListener("DOMContentLoaded", main);

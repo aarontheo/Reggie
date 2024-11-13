@@ -51,4 +51,5 @@ class Interval:
 				Checks if two times overlap.
 				Returns True if overlap, False if not.
 		'''
+		# TODO: This is actually not the ideal solution. I onyl need to check if the start and end are in this interval.
 		return (self.start in interval) or (self.end in interval) or (interval.start in self) or (interval.end in self)

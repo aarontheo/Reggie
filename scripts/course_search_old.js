@@ -1,6 +1,4 @@
-function open_course_search() {
-	// This function opens the course search page
-}
+var currently_searching = false;
 
 // Waits a specified amount of time for an element to appear in the DOM.
 // If the element is already present, it resolves immediately.
@@ -40,38 +38,17 @@ function waitForElement(selector, timeout = 5000) {
 }
 
 //Searches a course and scrapes the result
-async function search_course(course_code) {
-	console.log("Searching for " + course_code);
+function searchCourse(course) {
+	console.log("Searching for " + course);
 	if (document.getElementById("pg0_V_tabSearch_txtCourseRestrictor")) {
 		currently_searching = true;
-		document.getElementById("pg0_V_tabSearch_txtCourseRestrictor").value = course_code;
+		document.getElementById("pg0_V_tabSearch_txtCourseRestrictor").value = course;
 		document.getElementById("pg0_V_tabSearch_btnSearch").click();
 	} else {
 		console.log("Course restrictor not found.");
 	}
 
-function read_course_sections() {
-	// This function reads the course sections from the page and stores them under the course
-}
 
-async function search_courses() {
-	// Retrieves the course code list from local storage, and searches each course.
-}
-
-function store_courses(course_array) {
-
-}
-
-function sectionArrayToObject(section_array) {
-	section = {
-		section_code: section_array[0],
-		course_title: section_array[1],
-		credits: section_array[2],
-		schedule_info: section_array[3],
-		class_type: section_array[4],
-		delivery_method: section_array[5],
-	};
-	return section;
 }
 
 async function readCourseSections() {
@@ -91,18 +68,54 @@ async function readCourseSections() {
 	return course_sections;
 }
 
-async function handle_message(message, sender, sendResponse) {
-	console.log(message);
-	console.log(sender);
-	sendResponse("Message received by course_search.js");
+function sectionArrayToJSON(section_array) {
+	section = {
+		section_code: section_array[0],
+		course_title: section_array[1],
+		credits: section_array[2],
+		schedule_info: section_array[3],
+		class_type: section_array[4],
+		delivery_method: section_array[5],
+	};
+	return section;
+}
+
+function storeCourseSections(course_sections, course_code) {
+	let courses = JSON.parse(localStorage.getItem("course_list")) || [];
+	let course = {
+		course_code: course_code,
+		sections: course_sections,
+	};
+	courses.push(course);
+	localStorage.setItem("course_list", JSON.stringify(courses));
+}
+
+function handleMessage(message, sender, sendResponse) {
 	if (message.target == "course-search") {
-		console.log("Searching for course: " + message.course);
-		search_courses()
+		localStorage.setItem("current-course", message.course);
+		searchCourse(message.course);
 	}
 }
 
 async function main() {
+	browser.runtime.onMessage.addListener(handleMessage);
+	// "TR 12:45-01:45PM  (01/08/2025 - 04/10/2025) Taylor 247"
 
+
+
+
+	// const observer = new MutationObserver((mutations, observer) => {
+	// 	if (document.querySelector("tbody")) {
+	// 		console.log("sections loaded!");
+	// 		observer.disconnect();
+	// 		course_sections = getCourseSections();
+	// 		current_course = localStorage.getItem("current-course");
+	// 		storeCourseSections(course_sections, current_course);
+	// 		// go back to the course search and wait for the next course message
+	// 		window.open("https://student.byui.edu/ICS/Class_Schedule/Public_Course_Search.jnz", "_self");
+	// 	}
+	// });
+	observer.observe(document.body, { childList: true, subtree: true });
 }
 
-document.addEventListener("DOMContentLoaded", main);
+main();
