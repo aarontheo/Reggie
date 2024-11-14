@@ -3,9 +3,48 @@ import * as timeStuff from "./time_stuff.ts";
 type Method = "In-Person" | "Online";
 type Day = "M" | "T" | "W" | "R" | "F" | "Sa" | "Su";
 
-type CourseCode = string;
-function isCourseCode(str: string): str is CourseCode {
+export type CourseCode = string;
+export function isCourseCode(str: string): str is CourseCode {
   return /^[A-Z]{2,4} \d{3}$/.test(str);
+}
+
+export type SemesterName = string;
+export function isSemesterName(str: string): str is SemesterName {
+  // Matches anything in the form Fall 2021, SPRING 2022, etc.
+  return /^(?:FALL|SPRING|SUMMER|WINTER) \d{4}/i.test(str);
+}
+
+export class Semester {
+  public semester_name: SemesterName;
+  private course_codes: Array<CourseCode>;
+
+  constructor(course_codes: Array<CourseCode>) {
+    this.course_codes = course_codes;
+  }
+
+  static fromJSON(semester_json: any) {
+    return new Semester(semester_json.course_codes);
+  }
+
+  toJSON() {
+    return {
+      course_codes: this.course_codes,
+    };
+  }
+
+  addCourse(course_code: CourseCode) {
+    this.course_codes.push(course_code);
+  }
+
+  removeCourse(course_code: CourseCode) {
+    this.course_codes = this.course_codes.filter(
+      (code) => code !== course_code,
+    );
+  }
+
+  getCourseCodes(): Array<string> {
+    return this.course_codes;
+  }
 }
 
 export class Section {
@@ -26,7 +65,7 @@ export class Section {
     room: string,
     method: Method,
     days: Array<Day>,
-    interval: timeStuff.Interval
+    interval: timeStuff.Interval,
   ) {
     this.course_section = course_section;
     this.instructor = instructor;
@@ -38,7 +77,7 @@ export class Section {
     // this.type = type;
   }
 
-  static fromJSON(section_json) {
+  static fromJSON(section_json: any) {
     return new Section(
       section_json.course_section,
       section_json.instructor,
@@ -55,23 +94,22 @@ export class Section {
     return this.course_section;
   }
 
-  hasOverlap(section:Section) {
-    if(!this.days.some((day) => section.days.includes(day))) {
+  hasOverlap(section: Section) {
+    if (!this.days.some((day) => section.days.includes(day))) {
       return false;
     } else {
-      return self.
+      return this.interval.hasOverlap(section.interval);
     }
   }
 }
 
 export class Course {
-
   public course_code: string;
   public course_name: string;
   public credits: number;
   public sections: Array<Section>;
 
-  constructor(course_code:string, course_name:string, credits = 1) {
+  constructor(course_code: string, course_name: string, credits = 1) {
     this.course_code = course_code;
     this.course_name = course_name;
     this.credits = credits;
@@ -108,7 +146,6 @@ export class Course {
 }
 
 class Schedule {
-
   private sections: Array<Section>;
 
   constructor() {
@@ -127,11 +164,11 @@ class Schedule {
     return this.sections;
   }
 
-  hasOverlap(section:Section) {
+  hasOverlap(section: Section) {
     return this.sections.some((s) => s.hasOverlap(section));
   }
 
-  getOverlappingSections(section:Section) {
+  getOverlappingSections(section: Section) {
     return this.sections.filter((s) => s.hasOverlap(section));
   }
 

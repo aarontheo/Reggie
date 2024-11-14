@@ -21,6 +21,7 @@ import * as cs from './course_stuff';
 // Courses are stored as a map of course codes to lists of section objects.
 
 // Constants for storage keys:
+const KEY_SEMESTER_DICT = "semesters";
 const KEY_COURSE_DICT = "courses";
 const KEY_SEARCH_QUEUE = "search_queue";
 const KEY_COURSE_CODES = "course_codes";
@@ -35,6 +36,14 @@ function retrieve(key: string): any | null {
     return null;
   }
   return JSON.parse(retrieved);
+}
+
+function getSemesterDict() {
+  return retrieve(KEY_SEMESTER_DICT) || {};
+}
+
+function getSemester(semester_name:cs.SemesterName) {
+  return getSemesterDict()[semester_name] || {};
 }
 
 function getCourseDict() {

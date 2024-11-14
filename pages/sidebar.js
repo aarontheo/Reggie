@@ -1,8 +1,8 @@
+import * as course from "./scripts/courses.js";
+
 // sidebar.js
 // This script is used to interact with the sidebar of the extension.
 // It allows the user to add courses to a list and submit them to be searched on the course search page.
-
-import * as course from "./script/courses.js";
 
 function validateCourseCode(courseCode) {
 	const regex = /^[A-z]{2,7} *[0-9]{3}[A-z]*$/;
@@ -61,6 +61,8 @@ function searchCourses() {
 }
 
 function addCourse() {
+	console.log("Adding course");
+
 	const courseCodeInput = document.getElementById("course-code").value.trim().toUpperCase();
 	const isValid = validateCourseCode(courseCodeInput);
 
@@ -76,6 +78,8 @@ function addCourse() {
 }
 
 function main() {
+	console.log("Main running");
+
 	const courses = JSON.parse(localStorage.getItem("courses")) || [];
 	displayCourses(courses);
 
