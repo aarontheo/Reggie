@@ -1,5 +1,15 @@
 {
   "devDependencies": {
     "@types/firefox-webext-browser": "^120.0.4"
-  }
+  },
+  "name": "reggie",
+  "version": "1.0.0",
+  "description": "This is a manifest V3 extension for Firefox and Chrome designed to help BYU-I students register for and plan their classes for the semester.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
