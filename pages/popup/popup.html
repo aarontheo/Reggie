@@ -2,17 +2,20 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <script src="popup.js"></script>
-    <link rel="stylesheet" href="popup.css"/>
+    <script src="popup.js" type="module"></script>
+    <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
+    <a href="https://iplan.byui.edu/grad_planner/#/myPlans"
+      >Go to Grad Planner</a
+    >
     <div>Hello there, welcome to Reggie!</div>
     <button id="get-course-info">Get course info</button>
     <button id="course-lookup">Look up my courses</button>
     <div>Reggie Status:</div>
     <div id="reggie-status">Currently idle.</div>
     <div id="test-search">
-      <input type="text" id="search-input" placeholder="Search for a course"/>
+      <input type="text" id="search-input" placeholder="Search for a course" />
       <button id="search-button">Search</button>
     </div>
   </body>

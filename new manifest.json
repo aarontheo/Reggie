@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Reggie",
+
+  "version": "1.0",
+  "description": "A registration helper for students of BYU-I.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "reggie@aarontheo.github.io"
+    }
+  },
+}

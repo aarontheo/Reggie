@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "typeRoots": ["node_modules/@types"],
+    "types": ["firefox-webext-browser"],
+    "outDir": "./dest",
+    "rootDir": "./src",
+    "target": "ES2023",
+    "module": "ES2022",
+    "strict": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./src",
+    "moduleResolution": "Node",
+    "paths": {
+      "modules/*": ["modules/*"]
+    }
+  },
+
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}
