@@ -1,6 +1,7 @@
 {
   "devDependencies": {
-    "@types/firefox-webext-browser": "^120.0.4"
+    "@types/firefox-webext-browser": "^120.0.4",
+    "parcel": "^2.13.2"
   },
   "name": "reggie",
   "version": "1.0.0",

@@ -11,7 +11,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./src",
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "paths": {
       "modules/*": ["modules/*"]
     }
