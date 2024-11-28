@@ -9,6 +9,7 @@
       "id": "reggie@aarontheo.github.io"
     }
   },
+  "permissions": ["storage"],
   "background": {
     "scripts": ["dest/background.js"],
     "type": "module"
@@ -18,5 +19,14 @@
     "default_icon": {
       "16": "images/icon-16.png"
     }
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "dest/*",
+        "dest/lib/*"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }

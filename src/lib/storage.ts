@@ -27,62 +27,64 @@ const KEY_SEARCH_QUEUE = "search_queue";
 const KEY_COURSE_CODES = "course_codes";
 
 export function store(key: string, object: any): void {
-  localStorage.setItem(key, JSON.stringify(object));
+  // localStorage.setItem(key, JSON.stringify(object));
+  browser.storage.local.set({ [key]: object });
 }
 
-export function retrieve(key: string): any | null {
-  var retrieved = localStorage.getItem(key);
-  if (retrieved === null) {
-    return null;
-  }
-  return JSON.parse(retrieved);
+export async function retrieve(key: string): Promise<any> {
+  // var retrieved = localStorage.getItem(key);
+  // if (retrieved === null) {
+  //   return null;
+  // }
+  // return JSON.parse(retrieved);
+  return await browser.storage.local.get(key);
 }
 
-function getSemesterDict() {
-  return retrieve(KEY_SEMESTER_DICT) || {};
-}
+// function getSemesterDict() {
+//   return retrieve(KEY_SEMESTER_DICT) || {};
+// }
 
-function getSemester(semester_name:cs.SemesterName) {
-  return getSemesterDict()[semester_name] || {};
-}
+// function getSemester(semester_name:cs.SemesterName) {
+//   return getSemesterDict()[semester_name] || {};
+// }
 
-function getCourseDict() {
-  return retrieve(KEY_COURSE_DICT) || {};
-}
+// function getCourseDict() {
+//   return retrieve(KEY_COURSE_DICT) || {};
+// }
 
-function getSections(course_code:string): Array<cs.Section> {
-  return getCourseDict()[course_code] || [];
-}
+// function getSections(course_code:string): Array<cs.Section> {
+//   return getCourseDict()[course_code] || [];
+// }
 
-function addCourse(course_code:string) {
+// function addCourse(course_code:string) {
 
-}
+// }
 
-function getSearchQueue(): Array<string> {
-  return retrieve(KEY_SEARCH_QUEUE) || [];
-}
+// async function getSearchQueue(): Array<string> {
+//   return await retrieve(KEY_SEARCH_QUEUE) || [];
+// }
 
-function getCourseCodes() {
-  return retrieve(KEY_COURSE_CODES) || [];
-}
+// function getCourseCodes() {
+//   return retrieve(KEY_COURSE_CODES) || [];
+// }
 
-function pushSearchQueue(course_code: string) {
-  var queue = getSearchQueue();
-  queue.push(course_code);
-  store(KEY_SEARCH_QUEUE, queue);
-}
+// function pushSearchQueue(course_code: string) {
+//   var queue = getSearchQueue();
+//   queue.push(course_code);
+//   store(KEY_SEARCH_QUEUE, queue);
+// }
 
-function popSearchQueue(): string | null {
-  var queue = getSearchQueue();
-  var popped = queue.pop();
-  localStorage.setItem("search_queue", JSON.stringify(queue));
-  return popped || null;
-}
+// function popSearchQueue(): string | null {
+//   var queue = getSearchQueue();
+//   var popped = queue.pop();
+//   localStorage.setItem("search_queue", JSON.stringify(queue));
+//   return popped || null;
+// }
 
-function emptySearchQueue() {
-  store(KEY_SEARCH_QUEUE, []);
-}
+// function emptySearchQueue() {
+//   store(KEY_SEARCH_QUEUE, []);
+// }
 
-function emptyCourseDict() {
-  store(KEY_COURSE_DICT, {});
-}
+// function emptyCourseDict() {
+//   store(KEY_COURSE_DICT, {});
+// }
