@@ -1,19 +1,13 @@
 # CURRENT TODO:
 
-- [ ] Refactor storage API functions to work with the new classes
+- [ ] Create tutorial thing in popup
 
-- [ ] Rewrite background.js in TypeScript
-- [ ] Rewrite sidebar.js in TypeScript
-- [ ] Rewrite course_search.js in TypeScript
-- [ ] Rewrite popup.js in TypeScript
+## Sidebar
+- [ ] Course code entry field
+- [ ] Course code validation + formatting
+- [ ] Course code storage
 
-Do I want the user to pick a semester from a dropdown and then enter a year?
-- [ ] Get desired semester from user
-  - [ ] Popup asks for semester
-  - [ ] Popup sends semester to Background.js
-  - [ ] Background.js stores semester
-  - [ ] Background.js sends semester to Course Search
-
+## Course Search API
 - [ ] Initiate Course Search from Sidebar and Popup
   - [ ] Background.js opens Course Search
   - [ ] Course Search waits for a code from Background.js
@@ -22,8 +16,8 @@ Do I want the user to pick a semester from a dropdown and then enter a year?
   - [ ] Background.js sends Course Search each course code in the list
 
 - [ ] Interface with Course Search
-  - [X] Search by a course code
-  - [X] Get all section entries on a page
+  - [ ] Search by a course code
+  - [ ] Get all section entries on a page
   - [X] Parse JSON section entries from the raw HTML/text
   - [ ] Store JSON section entries under their course codes using the API
   - [ ] Go through all pages of results
