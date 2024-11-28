@@ -6,41 +6,15 @@
   "description": "A registration helper for students of BYU-I.",
   "browser_specific_settings": {
     "gecko": {
-      "id": "reggie@aarontheo.github.io",
-      "strict_min_version": "131.0"
+      "id": "reggie@aarontheo.github.io"
     }
   },
-  "permissions": [
-    "storage",
-    "activeTab"
-  ],
   "background": {
-    "scripts": ["scripts/open_sidebar.js", "scripts/background.js"],
+    "scripts": ["dest/background.js"],
     "type": "module"
   },
-  "action": {
-    "default_popup": "pages/popup.html",
-    "default_icon": {
-      "16": "images/icon-16.png"
-    }
-  },
-  "icons": {
-    "16": "images/icon-16.png"
-  },
-  "content_scripts": [
-    {
-      "matches": ["*://iplan.byui.edu/*", "<all_urls>"],
-      "js": ["scripts/test.js"]
-    },
-    {
-      "matches": [
-        "https://student.byui.edu/ICS/Class_Schedule/Public_Course_Search.jnz"
-      ],
-      "js": ["scripts/course_search.js"]
-    }
-  ],
   "sidebar_action": {
-    "default_panel": "pages/sidebar.html",
+    "default_panel": "pages/sidebar/sidebar.html",
     "default_icon": {
       "16": "images/icon-16.png"
     }

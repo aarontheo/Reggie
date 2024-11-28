@@ -1,4 +1,4 @@
-import * as timeStuff from "./time_stuff.ts";
+import * as timeStuff from "./time_stuff";
 
 type Method = "In-Person" | "Online";
 type Day = "M" | "T" | "W" | "R" | "F" | "Sa" | "Su";
