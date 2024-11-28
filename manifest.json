@@ -18,5 +18,13 @@
     "default_icon": {
       "16": "images/icon-16.png"
     }
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "dest/lib/*"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }
