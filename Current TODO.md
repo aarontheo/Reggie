@@ -3,6 +3,8 @@
 - [ ] Create tutorial thing in popup
 
 ## Sidebar
+- [X] Get sidebar.js linked properly by adding it to web resources.
+- [ ] Link sidebar.js to storage.js, possibly also with web resources.
 - [ ] Course code entry field
 - [ ] Course code validation + formatting
 - [ ] Course code storage

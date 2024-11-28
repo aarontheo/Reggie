@@ -26,11 +26,11 @@ const KEY_COURSE_DICT = "courses";
 const KEY_SEARCH_QUEUE = "search_queue";
 const KEY_COURSE_CODES = "course_codes";
 
-function store(key: string, object: any): void {
+export function store(key: string, object: any): void {
   localStorage.setItem(key, JSON.stringify(object));
 }
 
-function retrieve(key: string): any | null {
+export function retrieve(key: string): any | null {
   var retrieved = localStorage.getItem(key);
   if (retrieved === null) {
     return null;

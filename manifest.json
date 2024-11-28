@@ -14,17 +14,9 @@
     "type": "module"
   },
   "sidebar_action": {
-    "default_panel": "pages/sidebar/sidebar.html",
+    "default_panel": "pages/sidebar.html",
     "default_icon": {
       "16": "images/icon-16.png"
     }
-  },
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "dest/lib/*"
-      ],
-      "matches": ["<all_urls>"]
-    }
-  ]
+  }
 }
