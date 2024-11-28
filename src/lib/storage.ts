@@ -31,60 +31,27 @@ export function store(key: string, object: any): void {
   browser.storage.local.set({ [key]: object });
 }
 
-export async function retrieve(key: string): Promise<any> {
-  // var retrieved = localStorage.getItem(key);
-  // if (retrieved === null) {
-  //   return null;
-  // }
-  // return JSON.parse(retrieved);
-  return await browser.storage.local.get(key);
+export function retrieve(key: string): Promise<any> {
+  return browser.storage.local.get(key);
 }
 
-// function getSemesterDict() {
-//   return retrieve(KEY_SEMESTER_DICT) || {};
-// }
+export async function getCourseList(): Promise<string[]> {
+  let course_list = await retrieve(KEY_COURSE_CODES) || [];
+  return course_list;
+}
 
-// function getSemester(semester_name:cs.SemesterName) {
-//   return getSemesterDict()[semester_name] || {};
-// }
+export async function pushCourse(course_code:string) {
+  let course_stack: Array<string> = await retrieve(KEY_SEARCH_QUEUE) || [];
+  course_stack.push(course_code);
+  store(KEY_SEARCH_QUEUE, course_stack);
+}
 
-// function getCourseDict() {
-//   return retrieve(KEY_COURSE_DICT) || {};
-// }
-
-// function getSections(course_code:string): Array<cs.Section> {
-//   return getCourseDict()[course_code] || [];
-// }
-
-// function addCourse(course_code:string) {
-
-// }
-
-// async function getSearchQueue(): Array<string> {
-//   return await retrieve(KEY_SEARCH_QUEUE) || [];
-// }
-
-// function getCourseCodes() {
-//   return retrieve(KEY_COURSE_CODES) || [];
-// }
-
-// function pushSearchQueue(course_code: string) {
-//   var queue = getSearchQueue();
-//   queue.push(course_code);
-//   store(KEY_SEARCH_QUEUE, queue);
-// }
-
-// function popSearchQueue(): string | null {
-//   var queue = getSearchQueue();
-//   var popped = queue.pop();
-//   localStorage.setItem("search_queue", JSON.stringify(queue));
-//   return popped || null;
-// }
-
-// function emptySearchQueue() {
-//   store(KEY_SEARCH_QUEUE, []);
-// }
-
-// function emptyCourseDict() {
-//   store(KEY_COURSE_DICT, {});
-// }
+export async function popCourse(): Promise<string | null> {
+  let course_stack: Array<string> = await retrieve(KEY_SEARCH_QUEUE) || [];
+  if (course_stack.length == 0) {
+    return null;
+  }
+  let popped_course = course_stack.pop();
+  store(KEY_SEARCH_QUEUE, course_stack);
+  return popped_course;
+}

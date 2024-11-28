@@ -5,7 +5,7 @@
 ## Sidebar
 - [X] Get sidebar.js linked properly by adding it to web resources.
 - [X] Link sidebar.js to storage.js, possibly also with web resources.
-- [ ] Determine whether both localstorage and borwser.storage persistent/extension-specific.
+- [X] Determine whether both localstorage and browser.storage persistent/extension-specific.
 - [ ] Course code entry field
 - [ ] Course code validation + formatting
 - [ ] Course code storage
