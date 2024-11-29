@@ -26,13 +26,17 @@ const KEY_COURSE_DICT = "courses";
 const KEY_SEARCH_QUEUE = "search_queue";
 const KEY_COURSE_CODES = "course_codes";
 
-export function store(key: string, object: any): void {
+function store(key: string, object: any): void {
   // localStorage.setItem(key, JSON.stringify(object));
   browser.storage.local.set({ [key]: object });
 }
 
-export function retrieve(key: string): Promise<any> {
-  return browser.storage.local.get(key);
+async function retrieve(key: string): Promise<any> | null {
+  let obj = browser.storage.local.get(key);
+  if (Object.keys(await obj).length === 0) {
+    return null;
+  }
+  return obj[key];
 }
 
 export async function getCourseList(): Promise<string[]> {
@@ -40,17 +44,22 @@ export async function getCourseList(): Promise<string[]> {
   return course_list;
 }
 
-export async function pushCourse(course_code:string) {
+function format_code(course_code: string): cs.CourseCode {
+  return course_code.replace(" ", "").toUpperCase();
+}
+
+export async function pushCourse(course_code:cs.CourseCode) {
   let course_stack: Array<string> = await retrieve(KEY_SEARCH_QUEUE) || [];
-  course_stack.push(course_code);
+if (!Array.isArray(course_stack)) {
+  console.log(course_stack);
+    throw new TypeError("course_stack is not an array");
+  }
+  (course_stack as Array<string>).push(course_code);
   store(KEY_SEARCH_QUEUE, course_stack);
 }
 
-export async function popCourse(): Promise<string | null> {
+export async function popCourse(): Promise<cs.CourseCode | null> {
   let course_stack: Array<string> = await retrieve(KEY_SEARCH_QUEUE) || [];
-  if (course_stack.length == 0) {
-    return null;
-  }
   let popped_course = course_stack.pop();
   store(KEY_SEARCH_QUEUE, course_stack);
   return popped_course;

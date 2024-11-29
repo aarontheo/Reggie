@@ -1,27 +1,41 @@
-import { store, retrieve } from "./lib/storage.js";
+import * as st from "./lib/storage.js";
 
 console.log("Sidebar.js is running");
-store("test_number", 42);
-console.log(retrieve("test_number"));
+// store("test_number", 42);
+// console.log(retrieve("test_number"));
 
-function format_code(course_code:string): string {
-  return course_code.replace(" ", "").toUpperCase();
+function getCourseInput(): string {
+  let inputField = document.getElementById("course-code");
+  let code = (inputField as HTMLInputElement).value;
+  return code;
 }
 
-let code_list = []
-
-function addCourse(course_code:string) {
-  code_list.push(format_code(course_code));
-  store("course_codes", code_list);
+async function displayCourseList() {
+  // let list = document.getElementById("course-list");
+  // let code_list:Array<string> = await st.getCourseList();
+  // console.log(code_list);
+  // for (let code of code_list) {
+  //   let li = document.createElement("li");
+  //   li.textContent = code;
+  //   list.appendChild(li);
+  // }
 }
 
-async function updateCourseList() {
-  let course_list = retrieve("course_codes");
-  let course_list_element = document.getElementById("course_list");
-  course_list_element.innerHTML = "";
-  for (let course of await course_list) {
-    let course_element = document.createElement("li");
-    course_element.innerHTML = course;
-    course_list_element.appendChild(course_element);
-  }
+function main() {
+  // displayCourseList();
+  document.getElementById("add-course").addEventListener("click", () => {
+    console.log("add_button clicked!");
+    st.pushCourse(getCourseInput());
+    // displayCourseList();
+  });
 }
+
+// console.log(
+//   await st.getCourseList()
+// );
+
+// console.log(
+//   await browser.storage.local.get("course_codes")
+// )
+
+main();
