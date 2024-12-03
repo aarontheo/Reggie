@@ -1,5 +1,7 @@
 # CURRENT TODO:
 
+- [ ] Fix pushing and popping the search queue in storage.ts
+
 - [ ] Create tutorial thing in popup
 
 ## Sidebar

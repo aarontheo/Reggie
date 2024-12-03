@@ -1,1 +1,1 @@
-console.log("Background is running.");
+// console.log("Background is running.");
