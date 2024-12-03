@@ -1,11 +1,12 @@
-import * as timeStuff from "./time_stuff";
+import * as timeStuff from "./time_stuff.js";
 
 type Method = "In-Person" | "Online";
 type Day = "M" | "T" | "W" | "R" | "F" | "Sa" | "Su";
 
 export type CourseCode = string;
+
 export function isCourseCode(str: string): str is CourseCode {
-  return /^[A-Z]{2,4} \d{3}$/.test(str);
+  return /^[A-Z]{2,4}\d{3}$/.test(str);
 }
 
 export type SemesterName = string;
