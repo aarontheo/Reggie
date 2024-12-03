@@ -1,4 +1,5 @@
 import * as st from "./lib/storage.js";
+import * as cs from "./lib/course_stuff.js"
 
 console.log("Sidebar.js is running");
 // store("test_number", 42);
