@@ -51,7 +51,7 @@ export async function store(key: string, object: any): Promise<void> {
 export async function retrieve(key: string): Promise<any> | null {
   let obj = await browser.storage.local.get(key);
   if (isEmpty(obj)) {
-    console.error("Retrieved object is empty");
+    console.warn("Retrieved object is empty");
     return null;
     // throw new MissingValueError(`No value associated with key ${key}.`);
   }
@@ -97,6 +97,19 @@ export async function addCourse(course_code: cs.CourseCode): Promise<void> {
   console.log("Courses: ", courses);
   // setCourses(courses);
   store(KEY_COURSE_CODES, Array.from(courses));
+}
+
+export async function removeCourse(course_code: cs.CourseCode): Promise<void> {
+  console.log("getting courses");
+  let courses = await getCourses();
+  console.log("Courses: ", courses);
+  if (courses.has(course_code)) {
+    courses.delete(course_code);
+    console.log("Courses after removal: ", courses);
+    store(KEY_COURSE_CODES, Array.from(courses));
+  } else {
+    console.warn(`Course code ${course_code} not found in courses.`);
+  }
 }
 
 export async function hasCourse(course_code: cs.CourseCode): Promise<boolean> {
