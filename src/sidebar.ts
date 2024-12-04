@@ -31,7 +31,7 @@ async function addCourseEntry(): Promise<void> {
   // TODO: Notify user if course code is not valid
   if (!cs.isCourseCode(code)) {
     showError(
-      `'${code}' is not a valid course code. Codes are in the format: "ABC 123".`,
+      `'${code}' is not a valid course code. Codes are in the format: "ABC 123" or "DEF 456a".`,
     );
     return;
   }
