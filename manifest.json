@@ -11,7 +11,7 @@
   },
   "permissions": ["storage"],
   "background": {
-    "scripts": ["dest/background.js"],
+    "scripts": [],
     "type": "module"
   },
   "sidebar_action": {
@@ -24,7 +24,8 @@
     {
       "resources": [
         "dest/*",
-        "dest/lib/*"
+        "dest/lib/*",
+        "dest/testing/*"
       ],
       "matches": ["<all_urls>"]
     }
