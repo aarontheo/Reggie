@@ -22,14 +22,14 @@ function getCourseInput(): string {
   return code.replace(" ", "").toUpperCase();
 }
 
-function addCourseEntry(): void {
+async function addCourseEntry(): Promise<void> {
   let code = getCourseInput();
   // TODO: Notify user if course code is not valid
   if (!cs.isCourseCode(code)) {
     showError(`'${code}' is not a valid course code. Codes are in the format: "ABC 123".`);
     return;
   }
-  st.addCourse(code);
+  await st.addCourse(code);
 }
 
 async function refreshCodeList() {
@@ -45,7 +45,7 @@ async function refreshCodeList() {
   disp_list.append(document.createElement("custom"));
 }
 
-function main() {
+async function main() {
   // Listeners needed:
   // - Button to add a course entry from the textbox
   document.getElementById("add-course").addEventListener("click", () => {
