@@ -6,7 +6,7 @@ type Day = "M" | "T" | "W" | "R" | "F" | "Sa" | "Su";
 export type CourseCode = string;
 
 export function isCourseCode(str: string): str is CourseCode {
-  return /^[A-Z]{2,4}\d{3}[A-z]*$/.test(str);
+  return /^[A-Z]{2,4}\d{3}[A-z]?$/.test(str);
 }
 
 export type SemesterName = string;
