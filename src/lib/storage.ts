@@ -90,22 +90,22 @@ export async function getCourses(): Promise<Set<cs.CourseCode>> {
 // }
 
 export async function addCourse(course_code: cs.CourseCode): Promise<void> {
-  console.log("getting courses");
+  // console.log("getting courses");
   let courses = await getCourses();
-  console.log("Courses: ", courses);
+  // console.log("Courses: ", courses);
   courses.add(course_code);
-  console.log("Courses: ", courses);
+  // console.log("Courses: ", courses);
   // setCourses(courses);
   store(KEY_COURSE_CODES, Array.from(courses));
 }
 
 export async function removeCourse(course_code: cs.CourseCode): Promise<void> {
-  console.log("getting courses");
+  // console.log("getting courses");
   let courses = await getCourses();
-  console.log("Courses: ", courses);
+  // console.log("Courses: ", courses);
   if (courses.has(course_code)) {
     courses.delete(course_code);
-    console.log("Courses after removal: ", courses);
+    // console.log("Courses after removal: ", courses);
     store(KEY_COURSE_CODES, Array.from(courses));
   } else {
     console.warn(`Course code ${course_code} not found in courses.`);
