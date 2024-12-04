@@ -45,7 +45,7 @@ async function refreshCodeList() {
   list_elem.innerHTML = "";
   course_codes.forEach((code) => {
     let li = document.createElement("li");
-    li.textContent = code;
+    li.style.listStyleType = "none"; // Remove the bullet point
 
     let removeButton = document.createElement("button");
     removeButton.textContent = "X";
@@ -55,6 +55,7 @@ async function refreshCodeList() {
     });
 
     li.appendChild(removeButton);
+    li.appendChild(document.createTextNode(code));
     list_elem.appendChild(li);
   });
 }
