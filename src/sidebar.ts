@@ -60,11 +60,13 @@ async function refreshCodeList() {
 }
 
 async function main() {
+  refreshCodeList();
   // Listeners needed:
   // - Button to add a course entry from the textbox
   document.getElementById("add-course").addEventListener("click", async () => {
     resetError();
     await addCourseEntry();
+    refreshCodeList(); //Note: removing this breaks the functionality. It's async JS.
   });
 
   // This clicks the add course button when enter is pressed.
