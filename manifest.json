@@ -9,7 +9,7 @@
       "id": "reggie@aarontheo.github.io"
     }
   },
-  "permissions": ["storage"],
+  "permissions": ["storage", "scripting"],
   "background": {
     "scripts": [],
     "type": "module"
