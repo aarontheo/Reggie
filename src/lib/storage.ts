@@ -210,3 +210,11 @@ export async function removeSectionFromCourse(course_code: cs.CourseCode, sectio
     store(KEY_COURSE_DICT, courses);
   }
 }
+
+export async function clearStorage() {
+  await remove(KEY_SEMESTER_DICT);
+  await remove(KEY_COURSE_DICT);
+  await remove(KEY_SEARCH_QUEUE);
+  await remove(KEY_COURSE_CODES);
+  await remove(KEY_FLAGS);
+}

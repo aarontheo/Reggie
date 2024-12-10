@@ -11,7 +11,7 @@
   },
   "permissions": ["storage", "scripting", "activeTab", "tabs"],
   "background": {
-    "scripts": ["dest/background.js"],
+    "scripts": ["dest/background.js", "dest/testing/storage_testing.js"],
     "persistent": false,
     "type": "module"
   },
