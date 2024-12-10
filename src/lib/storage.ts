@@ -162,3 +162,51 @@ export async function removeFlag(flag:string) {
   delete flags[flag]
   store(KEY_FLAGS, flags);
 }
+
+// We need to be able to store and retrieve courses in semesters.
+// We need to be able to get a list of courses for a given semester.
+// We need to be able to get the sections associated with a course.
+
+export async function getCoursesForSemester(semester: string): Promise<Array<cs.CourseCode>> {
+  let semesters = await retrieve(KEY_SEMESTER_DICT) as object || {};
+  return semesters[semester] || [];
+}
+
+export async function addCourseToSemester(semester: string, course_code: cs.CourseCode) {
+  let semesters = await retrieve(KEY_SEMESTER_DICT) as object || {};
+  if (!semesters[semester]) {
+    semesters[semester] = [];
+  }
+  semesters[semester].push(course_code);
+  store(KEY_SEMESTER_DICT, semesters);
+}
+
+export async function removeCourseFromSemester(semester: string, course_code: cs.CourseCode) {
+  let semesters = await retrieve(KEY_SEMESTER_DICT) as object || {};
+  if (semesters[semester]) {
+    semesters[semester] = semesters[semester].filter((code: cs.CourseCode) => code !== course_code);
+    store(KEY_SEMESTER_DICT, semesters);
+  }
+}
+
+export async function getSectionsForCourse(course_code: cs.CourseCode): Promise<Array<cs.Section>> {
+  let courses = await retrieve(KEY_COURSE_DICT) as object || {};
+  return courses[course_code] || [];
+}
+
+export async function addSectionToCourse(course_code: cs.CourseCode, section: cs.Section) {
+  let courses = await retrieve(KEY_COURSE_DICT) as object || {};
+  if (!courses[course_code]) {
+    courses[course_code] = [];
+  }
+  courses[course_code].push(section);
+  store(KEY_COURSE_DICT, courses);
+}
+
+export async function removeSectionFromCourse(course_code: cs.CourseCode, section: cs.Section) {
+  let courses = await retrieve(KEY_COURSE_DICT) as object || {};
+  if (courses[course_code]) {
+    courses[course_code] = courses[course_code].filter((sec: cs.Section) => sec !== section);
+    store(KEY_COURSE_DICT, courses);
+  }
+}
