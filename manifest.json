@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Regginald",
+  "name": "Reggie",
 
   "version": "1.0",
   "description": "A registration helper for students of BYU-I.",
@@ -9,10 +9,17 @@
       "id": "reggie@aarontheo.github.io"
     }
   },
-  "permissions": ["storage", "scripting"],
+  "permissions": ["storage", "scripting", "activeTab", "tabs"],
   "background": {
-    "scripts": [],
+    "scripts": ["dest/background.js"],
+    "persistent": false,
     "type": "module"
+  },
+  "action": {
+    "default_popup": "pages/popup.html",
+    "default_icon": {
+      "16": "images/icon-16.png"
+    }
   },
   "sidebar_action": {
     "default_panel": "pages/sidebar.html",
@@ -22,11 +29,7 @@
   },
   "web_accessible_resources": [
     {
-      "resources": [
-        "dest/*",
-        "dest/lib/*",
-        "dest/testing/*"
-      ],
+      "resources": ["dest/*/**", "dest/lib/*"],
       "matches": ["<all_urls>"]
     }
   ]
