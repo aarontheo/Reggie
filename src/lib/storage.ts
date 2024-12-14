@@ -25,6 +25,7 @@ const KEY_SEMESTER_DICT = "semesters";
 const KEY_COURSE_DICT = "courses";
 const KEY_SEARCH_QUEUE = "search_queue";
 const KEY_COURSE_CODES = "course_codes";
+const KEY_FLAGS = "flags_object";
 
 class MissingValueError extends Error {
   constructor(message: string) {
@@ -48,10 +49,11 @@ export async function store(key: string, object: any): Promise<void> {
   await browser.storage.local.set({ [key]: object });
 }
 
-export async function retrieve(key: string): Promise<any> | null {
+export async function retrieve(key: string): Promise<any | null> {
+  //Returns null if the key doesn't have anything stored.
   let obj = await browser.storage.local.get(key);
   if (isEmpty(obj)) {
-    console.warn("Retrieved object is empty");
+    // console.warn("Retrieved object is empty");
     return null;
     // throw new MissingValueError(`No value associated with key ${key}.`);
   }
@@ -59,6 +61,7 @@ export async function retrieve(key: string): Promise<any> | null {
 }
 
 export async function remove(key: string) {
+  // Do we need an await here?
   await browser.storage.local.remove(key);
 }
 
@@ -133,7 +136,85 @@ export async function pushCourse(course_code: cs.CourseCode) {
 
 export async function popCourse(): Promise<cs.CourseCode | null> {
   let course_stack: Array<string> = (await retrieve(KEY_SEARCH_QUEUE)) || [];
-  let popped_course = course_stack.pop();
+  let popped_course = course_stack.pop() || null;
   store(KEY_SEARCH_QUEUE, course_stack);
   return popped_course;
+}
+
+async function getFlags(): Promise<object> {
+  // This treats an object like a dictionary
+  return (await retrieve(KEY_FLAGS)) as object || {};
+}
+
+export async function setFlag(flag: string, enabled: boolean) {
+  let flags = await getFlags();
+  flags[flag] = enabled;
+  store(KEY_FLAGS, flags);
+}
+
+export async function flag(flag: string): Promise<boolean> {
+  // If a flag doesn't currently exist, return null.
+  return (await retrieve(KEY_FLAGS) as object || {})[flag] || null;
+}
+
+export async function removeFlag(flag:string) {
+  let flags = await getFlags();
+  delete flags[flag]
+  store(KEY_FLAGS, flags);
+}
+
+// We need to be able to store and retrieve courses in semesters.
+// We need to be able to get a list of courses for a given semester.
+// We need to be able to get the sections associated with a course.
+
+export async function getCoursesForSemester(semester: string): Promise<Array<cs.CourseCode>> {
+  let semesters = await retrieve(KEY_SEMESTER_DICT) as object || {};
+  return semesters[semester] || [];
+}
+
+export async function addCourseToSemester(semester: string, course_code: cs.CourseCode) {
+  let semesters = await retrieve(KEY_SEMESTER_DICT) as object || {};
+  if (!semesters[semester]) {
+    semesters[semester] = [];
+  }
+  semesters[semester].push(course_code);
+  store(KEY_SEMESTER_DICT, semesters);
+}
+
+export async function removeCourseFromSemester(semester: string, course_code: cs.CourseCode) {
+  let semesters = await retrieve(KEY_SEMESTER_DICT) as object || {};
+  if (semesters[semester]) {
+    semesters[semester] = semesters[semester].filter((code: cs.CourseCode) => code !== course_code);
+    store(KEY_SEMESTER_DICT, semesters);
+  }
+}
+
+export async function getSectionsForCourse(course_code: cs.CourseCode): Promise<Array<cs.Section>> {
+  let courses = await retrieve(KEY_COURSE_DICT) as object || {};
+  return courses[course_code] || [];
+}
+
+export async function addSectionToCourse(course_code: cs.CourseCode, section: cs.Section) {
+  let courses = await retrieve(KEY_COURSE_DICT) as object || {};
+  if (!courses[course_code]) {
+    courses[course_code] = [];
+  }
+  courses[course_code].push(section);
+  store(KEY_COURSE_DICT, courses);
+}
+
+export async function removeSectionFromCourse(course_code: cs.CourseCode, section: cs.Section) {
+  let courses = await retrieve(KEY_COURSE_DICT) as object || {};
+  if (courses[course_code]) {
+    courses[course_code] = courses[course_code].filter((sec: cs.Section) => sec !== section);
+    store(KEY_COURSE_DICT, courses);
+  }
+}
+
+export async function clearStorage() {
+  await remove(KEY_SEMESTER_DICT);
+  await remove(KEY_COURSE_DICT);
+  await remove(KEY_SEARCH_QUEUE);
+  await remove(KEY_COURSE_CODES);
+  await remove(KEY_FLAGS);
 }

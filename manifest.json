@@ -9,10 +9,17 @@
       "id": "reggie@aarontheo.github.io"
     }
   },
-  "permissions": ["storage"],
+  "permissions": ["storage", "scripting", "activeTab", "tabs"],
   "background": {
-    "scripts": [],
+    "scripts": ["dest/background.js", "dest/testing/storage_testing.js"],
+    "persistent": false,
     "type": "module"
+  },
+  "action": {
+    "default_popup": "pages/popup.html",
+    "default_icon": {
+      "16": "images/icon-16.png"
+    }
   },
   "sidebar_action": {
     "default_panel": "pages/sidebar.html",
@@ -20,13 +27,18 @@
       "16": "images/icon-16.png"
     }
   },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://student.byui.edu/ICS/Class_Schedule/Public_Course_Search.jnz"
+      ],
+      "js": ["dest/course_search.js"],
+      "run_at": "document_end"
+    }
+  ],
   "web_accessible_resources": [
     {
-      "resources": [
-        "dest/*",
-        "dest/lib/*",
-        "dest/testing/*"
-      ],
+      "resources": ["dest/*/**", "dest/lib/*"],
       "matches": ["<all_urls>"]
     }
   ]
