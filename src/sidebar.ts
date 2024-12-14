@@ -60,6 +60,10 @@ async function refreshCodeList() {
   });
 }
 
+function sendReadyMessage() {
+  browser.runtime.sendMessage({ type: "ready" });
+}
+
 async function main() {
   refreshCodeList();
   // Listeners needed:
@@ -82,6 +86,10 @@ async function main() {
   // The list should always accurately reflect the contents of the Set.
   // Therefore, we will add the refresh function to the storage event listener.
   browser.storage.local.onChanged.addListener(refreshCodeList);
+
+  document
+    .getElementById("search-courses")
+    .addEventListener("click", sendReadyMessage);
 
   // Functionality needed:
   // - Function to refresh course code display list in sidebar

@@ -27,6 +27,15 @@
       "16": "images/icon-16.png"
     }
   },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://student.byui.edu/ICS/Class_Schedule/Public_Course_Search.jnz"
+      ],
+      "js": ["dest/course_search.js"],
+      "run_at": "document_end"
+    }
+  ],
   "web_accessible_resources": [
     {
       "resources": ["dest/*/**", "dest/lib/*"],
